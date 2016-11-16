@@ -1,5 +1,6 @@
 package main.groovy;
 
 public interface KeyMapper {
-    public int getNote(char c);
+    public int getNote(char c)
+    public void setStartNote(int note)
 }

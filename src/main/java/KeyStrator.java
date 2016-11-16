@@ -8,6 +8,8 @@ import javax.sound.midi.*;
 public class KeyStrator {
     public static void main(String[] args) {
         KeyMapper mapper = new AlphabeticMapper();
+//        CharSequence hola = "mambrú se fue a la guerra chiribin chiribin chin chin\n"
+//                + "mambrú se fue a la guerra y ya no volverá ajaja ajaja\n";
         CharSequence hola = "puto el que lee, puto el que lee,puto el que lee, puto el que lee p"
                 + "Los talleres  \n"
                 + "Garages del oficio  \n"
@@ -50,7 +52,9 @@ public class KeyStrator {
         while (i < hola.length()) {
             char c = hola.charAt(i++);
             nNoteNumber = mapper.getNote(c);
-            channel.noteOn(nNoteNumber, nVelocity);
+            if(nNoteNumber != 67){
+                channel.noteOn(nNoteNumber, nVelocity);
+            }
             System.out.println("char:" + c + " i:" + i + "note number:" + nNoteNumber);
             /*
              * Wait for the specified amount of time
