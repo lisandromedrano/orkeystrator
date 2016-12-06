@@ -9,6 +9,7 @@ class AlphabeticMapper implements main.groovy.KeyMapper {
     int octaves = 2
     int [] scale = Scales.PENTATONIC_SCALE;
 
+
     @Override
     public int getNote(char c) {
         //A = 65

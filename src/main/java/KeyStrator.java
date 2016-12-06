@@ -82,6 +82,7 @@ public class KeyStrator {
         echoPart.add(echo);
         melScore.addPart(melPart);
         melScore.add(echoPart);
+
         Play.midi(melScore);
         //View.show(melScore);
     }
