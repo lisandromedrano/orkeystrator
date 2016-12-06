@@ -1,8 +1,14 @@
 package main.groovy
 
-class AlphabeticMapper implements KeyMapper {
-    int startNote = 60
+import jm.constants.Scales
+
+import static jm.constants.Pitches.*
+
+class AlphabeticMapper implements main.groovy.KeyMapper {
+    int rootPitch = C4
     int octaves = 2
+    int [] scale = Scales.PENTATONIC_SCALE;
+
     @Override
     public int getNote(char c) {
         //A = 65
@@ -11,7 +17,7 @@ class AlphabeticMapper implements KeyMapper {
         //C scale 60 62 64 65 67 69 71
         //         a  b  c  d  e f   g
         int note = Character.toLowerCase(c)
-        getNoteScale(note % 14)
+        getNoteScale(note % 10)
 //        switch (note % 14){
 //            case 0:return 60
 //            case 1:return 62
@@ -40,16 +46,28 @@ class AlphabeticMapper implements KeyMapper {
 
     int getNoteScale(int note){
         int octave = 0
-         switch(note){
-             case 0: return octave + startNote
-             case 1: return octave + startNote + 2
-             case 2: return octave + startNote + 4
-             case 3: return octave + startNote + 5
-             case 4: return octave + startNote + 7
-             case 5: return octave + startNote + 9
-             case 6: return octave + startNote + 11
-             default: return octave + startNote
-         }
+            octave = (note / scale.size()) - 1
+        int index = note % scale.size() - octave
+        return octave + rootPitch + scale[index];
+//         switch(note){
+//             case 0: return octave + rootPitch
+//             case 1: return octave + rootPitch + 2
+//             case 2: return octave + rootPitch + 4
+//             case 3: return octave + rootPitch + 5
+//             case 4: return octave + rootPitch + 7
+//             case 5: return octave + rootPitch + 9
+//             case 6: return octave + rootPitch + 11
+//             default: return octave + rootPitch
+//         }
+    }
+
+    public void setStartNote(int note){
+        rootPitch = note;
+    }
+
+    @Override
+    public void setScale(int[] scale){
+        this.scale = scale
     }
 
 }
